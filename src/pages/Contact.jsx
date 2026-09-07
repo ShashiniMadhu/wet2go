@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { CONTACT_EMAIL } from '../data/site'
 import Icon from '../components/Icon'
 
 export default function Contact() {
@@ -27,7 +28,7 @@ export default function Contact() {
               <Icon name="mail" />
               <div>
                 <strong>Email</strong>
-                <a href="mailto:hello@wet2go.com">hello@wet2go.com</a>
+                <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
               </div>
             </li>
             <li>

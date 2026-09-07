@@ -10,6 +10,7 @@ export const NAV = [
 
 export const PRICE = 2499.99
 export const FREE_DELIVERY = 5000
+export const CONTACT_EMAIL = 'wet2go.visionventures@gmail.com'
 
 export function formatRs(amount, { cents = amount % 1 !== 0 } = {}) {
   return `Rs. ${amount.toLocaleString('en-US', {
