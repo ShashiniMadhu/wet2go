@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { COLORS, PRICE } from '../data/site'
+import { COLORS, FREE_DELIVERY, PRICE, formatRs } from '../data/site'
 import Icon from '../components/Icon'
 
 export default function Product({ onAddToCart }) {
@@ -24,10 +24,14 @@ export default function Product({ onAddToCart }) {
       </div>
       <div className="product-info">
         <h2>Wet2Go Bag</h2>
-        <p className="price">Rs. {PRICE.toLocaleString()}</p>
+        <p className="price">{formatRs(PRICE)}</p>
         <p>
-          10" wide × 14" high. Waterproof lining, mesh vents with silk flaps, fabric handle, and a
-          fold-and-Velcro travel mode.
+          10" wide × 14" high. Waterproof lining, mesh vents with silk flaps, fabric handle, a 4"
+          water collection pouch, and a fold-and-Velcro travel mode.
+        </p>
+        <p className="product-delivery">
+          <Icon name="truck" />
+          Free delivery on orders over {formatRs(FREE_DELIVERY, { cents: false })}.
         </p>
         <p className="swatch-label">Colour</p>
         <div className="swatches">

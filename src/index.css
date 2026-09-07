@@ -17,6 +17,7 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: clip;
 }
 
 html,
@@ -44,13 +45,18 @@ img {
 }
 
 .page {
-  overflow-x: hidden;
+  padding-top: var(--header-h, 96px);
 }
 
 .sticky-head {
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 40;
+  width: 100%;
+  background: var(--navy);
+  box-shadow: 0 8px 24px rgba(0, 26, 40, 0.22);
 }
 
 .topbar {
@@ -113,6 +119,7 @@ img {
 }
 
 .nav {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -245,7 +252,7 @@ img {
 }
 
 .hero {
-  --hero-height: 72vh;
+  --hero-height: 80vh;
   position: relative;
   display: flex;
   min-height: var(--hero-height);
@@ -375,13 +382,14 @@ img {
 }
 
 #home,
+#home,
 #about,
 #product,
 #how,
 #gallery,
 #faq,
 #contact {
-  scroll-margin-top: 108px;
+  scroll-margin-top: calc(var(--header-h, 96px) + 12px);
 }
 
 .adventures,
@@ -522,6 +530,12 @@ img {
   line-height: 1.7;
 }
 
+.about-tagline {
+  color: var(--navy) !important;
+  font-weight: 700;
+  font-style: italic;
+}
+
 .about img,
 .product-media img {
   width: 100%;
@@ -535,6 +549,27 @@ img {
   font-size: 28px;
   font-weight: 700;
   margin: 8px 0 12px !important;
+}
+
+.product-delivery {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 8px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: #e8f7fc;
+  border: 1px solid var(--cyan);
+  color: var(--navy) !important;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.product-delivery svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
 }
 
 .swatch-label,
@@ -773,10 +808,26 @@ img {
 }
 
 .contact-panel {
-  background: linear-gradient(165deg, #003a54, var(--navy));
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: #000 url('/images/adventures/travel.jpg') center / cover no-repeat;
   color: var(--white);
   border-radius: 22px;
   padding: 32px;
+}
+
+.contact-panel::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.68);
+  z-index: 0;
+}
+
+.contact-panel > * {
+  position: relative;
+  z-index: 1;
 }
 
 .contact-panel h3 {
@@ -881,6 +932,97 @@ img {
   color: var(--muted);
 }
 
+.order-success {
+  text-align: center;
+  padding: 12px 4px 8px;
+}
+
+.order-success-icon {
+  width: 64px;
+  height: 64px;
+  margin: 8px auto 16px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: #e4f8ec;
+  color: #137a40;
+}
+
+.order-success-icon svg {
+  width: 34px;
+  height: 34px;
+}
+
+.order-success h3 {
+  margin: 0 0 10px;
+  color: var(--navy);
+  font-size: 24px;
+}
+
+.order-success-lead {
+  margin: 0 0 20px;
+  color: var(--text);
+  line-height: 1.6;
+  font-size: 15px;
+}
+
+.order-success-lead strong {
+  color: var(--navy);
+}
+
+.order-success-meta {
+  margin: 0 0 16px;
+  padding: 16px;
+  border-radius: 14px;
+  background: var(--paper);
+  text-align: left;
+  display: grid;
+  gap: 12px;
+}
+
+.order-success-meta div {
+  display: grid;
+  gap: 2px;
+}
+
+.order-success-meta dt {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.order-success-meta dd {
+  margin: 0;
+  color: var(--navy);
+  font-weight: 600;
+}
+
+.order-success-meta dd.free {
+  color: #137a40;
+}
+
+.order-success-items {
+  list-style: none;
+  margin: 0 0 16px;
+  padding: 0;
+  text-align: left;
+  color: var(--text);
+}
+
+.order-success-items li {
+  padding: 8px 0;
+  border-bottom: 1px solid #e6eef2;
+}
+
+.order-success-note {
+  margin: 0 0 8px;
+  font-style: italic;
+  color: var(--navy);
+  font-weight: 600;
+}
+
 .footer {
   background: var(--navy-deep);
   color: var(--white);
@@ -915,10 +1057,16 @@ img {
 }
 
 .drawer {
-  width: min(420px, 100%);
+  width: min(900px, 100%);
   background: var(--white);
-  padding: 22px;
+  padding: 28px 32px;
   overflow: auto;
+}
+
+@media (min-width: 900px) {
+  .drawer {
+    width: min(900px, 46vw);
+  }
 }
 
 .drawer header {
@@ -957,9 +1105,117 @@ img {
   color: var(--navy);
 }
 
-.note {
+.delivery-banner {
+  margin: 18px 0 8px;
+  padding: 16px 18px;
+  border-radius: 14px;
+  background: #e8f7fc;
+  border: 2px solid var(--cyan);
+  color: var(--navy);
+}
+
+.delivery-banner.applied {
+  background: #e4f8ec;
+  border-color: #1ea35a;
+}
+
+.delivery-banner-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+.delivery-banner-head svg {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+}
+
+.delivery-banner-head strong {
+  font-size: 16px;
+  letter-spacing: 0.01em;
+}
+
+.delivery-banner.applied .delivery-banner-head strong {
+  color: #137a40;
+  font-size: 18px;
+}
+
+.delivery-banner p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text);
+}
+
+.delivery-track {
+  height: 10px;
+  margin: 12px 0 8px;
+  border-radius: 99px;
+  background: #d5e4ea;
+  overflow: hidden;
+}
+
+.delivery-track span {
+  display: block;
+  height: 100%;
+  border-radius: 99px;
+  background: var(--cyan);
+}
+
+.delivery-banner.applied .delivery-track span {
+  background: #1ea35a;
+}
+
+.delivery-meta {
+  font-size: 13px !important;
+  font-weight: 600;
+  color: var(--navy) !important;
+}
+
+.cart-summary {
+  margin: 12px 0 4px;
+  display: grid;
+  gap: 8px;
+}
+
+.cart-summary p {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0;
+  font-size: 15px;
+}
+
+.delivery-line span:last-child {
+  font-weight: 700;
   color: var(--muted);
+}
+
+.delivery-line.free span:last-child {
+  color: #137a40;
+  background: #e4f8ec;
+  border: 1px solid #1ea35a;
+  border-radius: 999px;
+  padding: 2px 10px;
   font-size: 13px;
+  letter-spacing: 0.06em;
+}
+
+.cart-summary .total {
+  padding-top: 8px;
+  border-top: 1px solid #d5dee4;
+  font-size: 18px;
+}
+
+.topbar-offer {
+  background: rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  border-radius: 999px;
+  padding: 3px 12px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
 }
 
 @media (max-width: 1100px) {
@@ -974,7 +1230,7 @@ img {
   .nav nav {
     display: none;
     position: absolute;
-    top: 108px;
+    top: 100%;
     left: 0;
     right: 0;
     background: var(--navy);

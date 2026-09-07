@@ -1,11 +1,12 @@
+import { FREE_DELIVERY, formatRs } from '../data/site'
 import Icon from './Icon'
 
 export default function TopBar() {
   return (
     <div className="topbar">
       <p>
-        <span>
-          <Icon name="truck" /> FREE DELIVERY ON ORDERS OVER Rs. 2,500
+        <span className="topbar-offer">
+          <Icon name="truck" /> FREE DELIVERY ON ORDERS OVER {formatRs(FREE_DELIVERY, { cents: false })}
         </span>
         <span className="bar">|</span>
         <span>

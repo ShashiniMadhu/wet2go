@@ -16,7 +16,7 @@ export default function HowItWorks() {
         <article>
           <span>03</span>
           <h3>Collect the water</h3>
-          <p>Runoff gathers in the 2" pouch. Squeeze the removable sponge when you get home.</p>
+          <p>Runoff gathers in the 4" pouch. Squeeze the removable sponge when you get home.</p>
         </article>
         <article>
           <span>04</span>

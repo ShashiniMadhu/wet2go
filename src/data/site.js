@@ -8,7 +8,15 @@ export const NAV = [
   { id: 'contact', label: 'Contact Us' },
 ]
 
-export const PRICE = 1990
+export const PRICE = 2499.99
+export const FREE_DELIVERY = 5000
+
+export function formatRs(amount, { cents = amount % 1 !== 0 } = {}) {
+  return `Rs. ${amount.toLocaleString('en-US', {
+    minimumFractionDigits: cents ? 2 : 0,
+    maximumFractionDigits: 2,
+  })}`
+}
 
 export const COLORS = [
   { id: 'black', name: 'Black', hex: '#111111', image: '/images/bag-black.jpeg' },
@@ -53,7 +61,7 @@ export const FAQS = [
   },
   {
     q: 'How does the water collection pouch work?',
-    a: 'The bottom 2" zippered pouch collects runoff. A removable sponge sits inside so you can squeeze out excess water after swimming, gym, or the beach.',
+    a: 'The bottom 4" zippered pouch collects runoff. A removable sponge sits inside so you can squeeze out excess water after swimming, gym, or the beach.',
   },
   {
     q: 'Can I fold it for travel?',
@@ -61,6 +69,6 @@ export const FAQS = [
   },
   {
     q: 'Do you offer free delivery?',
-    a: 'Delivery is free on orders over Rs. 2,500. Standard shipping applies to smaller orders.',
+    a: `Delivery is free on orders over ${formatRs(FREE_DELIVERY, { cents: false })}. Standard shipping applies to smaller orders.`,
   },
 ]

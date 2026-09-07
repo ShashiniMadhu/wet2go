@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { NAV } from '../data/site'
 import { scrollToId } from '../utils/scroll'
 import Icon from './Icon'
@@ -8,6 +8,19 @@ import TopBar from './TopBar'
 export default function Header({ cartCount, onOpenCart }) {
   const [active, setActive] = useState('home')
   const [menuOpen, setMenuOpen] = useState(false)
+  const headRef = useRef(null)
+
+  useEffect(() => {
+    const el = headRef.current
+    if (!el) return
+    const syncHeight = () => {
+      document.documentElement.style.setProperty('--header-h', `${el.offsetHeight}px`)
+    }
+    syncHeight()
+    const observer = new ResizeObserver(syncHeight)
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [])
 
   useEffect(() => {
     const onScroll = () => {
@@ -29,7 +42,7 @@ export default function Header({ cartCount, onOpenCart }) {
   }
 
   return (
-    <div className="sticky-head">
+    <div className="sticky-head" ref={headRef}>
       <TopBar />
       <header className="nav">
         <Logo />
