@@ -17,7 +17,12 @@ export default function TopBar() {
         <a href="https://instagram.com" target="_blank" rel="noreferrer" aria-label="Instagram">
           <Icon name="instagram" />
         </a>
-        <a href="https://facebook.com" target="_blank" rel="noreferrer" aria-label="Facebook">
+        <a
+          href="https://www.facebook.com/share/1EZV1yQpBK/?mibextid=wwXIfr"
+          target="_blank"
+          rel="noreferrer"
+          aria-label="Facebook"
+        >
           <Icon name="facebook" />
         </a>
         <a href="https://tiktok.com" target="_blank" rel="noreferrer" aria-label="TikTok">
