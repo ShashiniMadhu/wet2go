@@ -8,7 +8,7 @@ export const NAV = [
   { id: 'contact', label: 'Contact Us' },
 ]
 
-export const PRICE = 2499.99
+export const PRICE = 1999
 export const FREE_DELIVERY = 5000
 export const CONTACT_EMAIL = 'wet2go.visionventures@gmail.com'
 
